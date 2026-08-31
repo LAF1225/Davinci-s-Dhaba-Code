@@ -1,0 +1,115 @@
+import json
+import os
+
+PROJECT_FOLDER = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+
+SAVED_AI_FOLDER = os.path.join(PROJECT_FOLDER, "saved_ai_files")
+DATASET_FOLDER = os.path.join(PROJECT_FOLDER, "collected_textile_dataset")
+REFERENCE_FOLDER = os.path.join(PROJECT_FOLDER, "verified_reference_textiles")
+
+DINOV2_WEIGHTS_FOLDER = os.path.join(SAVED_AI_FOLDER, "dinov2_weights")
+
+SAVED_MODEL_FOLDER = os.path.join(SAVED_AI_FOLDER, "active_model")
+
+CLASSIFIER_FILE_NAME = "classifier.joblib"
+FEATURE_SCHEMA_FILE_NAME = "feature_schema.json"
+MODEL_INFORMATION_FILE_NAME = "metadata.json"
+MODEL_RESULTS_FILE_NAME = "metrics.json"
+REFERENCE_EMBEDDINGS_FILE_NAME = "reference_embeddings.npz"
+
+MINIMUM_PHOTO_WIDTH_PIXELS = 320
+MINIMUM_PHOTO_HEIGHT_PIXELS = 240
+MINIMUM_SHARPNESS = 60.0
+MAXIMUM_MEAN_BRIGHTNESS_FOR_TOO_DARK = 25.0
+MINIMUM_MEAN_BRIGHTNESS_FOR_TOO_BRIGHT = 230.0
+MAXIMUM_CLIPPED_PIXEL_FRACTION = 0.25
+MINIMUM_BRIGHTNESS_VARIATION = 8.0
+
+DINOV2_MODEL_NAME = "dinov2_vits14"
+DINOV2_REPOSITORY = "facebookresearch/dinov2"
+TILE_SIZE_PIXELS = 768
+TILE_OVERLAP = 0.20
+MAXIMUM_TILES_PER_PHOTO = 9
+DINOV2_INPUT_SIZE_PIXELS = 224
+BACKGROUND_TILE_BRIGHTNESS_VARIATION = 6.0
+MINIMUM_USABLE_TILES = 1
+DINOV2_DEVICE = "cpu"
+
+COLOUR_SENSOR_CHANNEL_COUNT = 3
+COLOUR_SENSOR_CHANNEL_LABELS = ["red", "green", "blue"]
+COLOUR_SENSOR_RAW_MINIMUM = 0.0
+COLOUR_SENSOR_RAW_MAXIMUM = 65535.0
+CALIBRATION_EPSILON = 1e-6
+CALIBRATION_CLAMP_MINIMUM = -0.5
+CALIBRATION_CLAMP_MAXIMUM = 1.5
+MINIMUM_WHITE_MINUS_DARK = 100.0
+USE_NORMALISED_BANDS = True
+USE_ADJACENT_DIFFERENCES = True
+USE_BAND_RATIOS = True
+USE_SECOND_DIFFERENCE = True
+USE_SUMMARY_STATISTICS = True
+BAND_RATIO_PAIRS = [[0, 2], [0, 1], [1, 2]]
+
+USE_GRAY_CONTRAST = True
+USE_LOCAL_BINARY_PATTERN = True
+USE_EDGE_DENSITY = True
+USE_EDGE_ORIENTATION = True
+USE_FOURIER_PERIODICITY = True
+USE_LOCAL_CONTRAST_VARIABILITY = True
+LOCAL_BINARY_PATTERN_POINTS = 8
+LOCAL_BINARY_PATTERN_RADIUS = 1
+TEXTURE_ANALYSIS_SIZE_PIXELS = 512
+FEATURE_SCHEMA_VERSION = "3"
+PREPROCESSING_VERSION = "2.0.0-xiao"
+HARDWARE_PROFILE_NAME = "mobile_mecanum_xiao_v1"
+REFERENCE_TOP_K = 3
+OUT_OF_DOMAIN_SIMILARITY = 0.35
+LOW_CONFIDENCE_MINIMUM = 0.35
+LOW_CONFIDENCE_MAXIMUM = 0.65
+MINIMUM_REFERENCE_SIMILARITY = 0.55
+FAILED_QUALITY_MEANS_RESCAN = True
+MAXIMUM_RESCANS_PER_AREA = 2
+EXTRA_SCAN_AREAS_WHEN_DOUBTFUL = 2
+MINIMUM_VALID_SCAN_AREAS = 8
+HANDMADE_MEDIAN_MINIMUM = 0.60
+MACHINE_MEDIAN_MAXIMUM = 0.40
+MINIMUM_SUPPORTING_FRACTION = 0.60
+MAXIMUM_SCORE_SPREAD = 0.28
+MAXIMUM_INCONCLUSIVE_FRACTION = 0.50
+TRAIN_FRACTION = 0.70
+VALIDATION_FRACTION = 0.15
+RANDOM_SEED = 42
+LINEAR_C_VALUES = [0.1, 1.0, 10.0]
+RBF_C_VALUES = [1.0, 10.0]
+RBF_GAMMA_VALUES = ["scale", 0.01]
+PROBABILITY_CALIBRATION_METHOD = "sigmoid"
+PROBABILITY_CALIBRATION_FOLDS = 3
+SCAN_JOIN_TIMEOUT_SECONDS = 30.0
+MAXIMUM_PHOTO_UPLOAD_MEGABYTES = 12
+
+def _read_settings_file():
+    """Read settings_private.json if it exists, otherwise settings.json.
+
+    Both are optional. Missing means the defaults below are used.
+    """
+    for name in ("settings_private.json", "settings.json"):
+        path = os.path.join(PROJECT_FOLDER, name)
+        if os.path.exists(path):
+            with open(path, "r", encoding="utf-8") as handle:
+                return json.load(handle)
+    return {}
+
+
+_file_settings = _read_settings_file()
+
+LAPTOP_SERVER_ADDRESS = str(
+    _file_settings.get("laptop_server_address", "http://127.0.0.1:8000")
+)
+SCAN_AREAS_PER_TEXTILE = int(_file_settings.get("number_of_regions_per_textile", 5))
+
+ROBOT_SHARED_KEY = str(_file_settings.get("robot_shared_key", ""))
+
+if "saved_model_folder" in _file_settings:
+    SAVED_MODEL_FOLDER = os.path.join(
+        PROJECT_FOLDER, str(_file_settings["saved_model_folder"])
+    )

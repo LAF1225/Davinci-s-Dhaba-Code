@@ -1,0 +1,42 @@
+# Real settings, including the Wi-Fi password. Never commit this.
+settings_private.json
+
+# Wi-Fi credentials for the two ESP boards.
+**/wifi_credentials.h
+**/secrets.h
+
+# Python
+.venv/
+__pycache__/
+*.pyc
+.pytest_cache/
+
+# Collected scans, trained models and the scan database. These are data, not
+# code. Keep them backed up somewhere, but not in git: a few hundred macro
+# photos will make the repository unusable.
+saved_ai_files/scans.db
+saved_ai_files/scan_photos/
+saved_ai_files/dinov2_weights/
+saved_ai_files/active_model/
+collected_textile_dataset/*
+!collected_textile_dataset/README_dataset_folder_format.md
+!collected_textile_dataset/.gitkeep
+verified_reference_textiles/*
+!verified_reference_textiles/README_reference_textile_format.md
+!verified_reference_textiles/.gitkeep
+
+# Arduino and PlatformIO build output
+.pio/
+build/
+*.elf
+*.bin
+
+# Editors and operating systems
+.vscode/
+.idea/
+Thumbs.db
+.DS_Store
+
+project_notes.md
+
+saved_ai_files/README_put_existing_model_files_here.md

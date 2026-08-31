@@ -1,0 +1,12 @@
+# Normalise line endings so a checkout on Windows and a checkout on Linux hold
+# the same bytes. Without this, git rewrites files on the way in and out and
+# the diffs fill up with lines nobody changed.
+* text=auto eol=lf
+
+# Binary, so git never tries to be helpful with them.
+*.jpg binary
+*.png binary
+*.pth binary
+*.joblib binary
+*.npz binary
+*.db binary

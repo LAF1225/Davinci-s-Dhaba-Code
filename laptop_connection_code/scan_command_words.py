@@ -1,0 +1,38 @@
+TAKE_SCAN = "TAKE_SCAN"
+
+CAMERA_READY = "CAMERA_READY"
+PHOTO_CAPTURED = "PHOTO_CAPTURED"     
+PHOTO_SENT = "PHOTO_SENT"             
+CAMERA_ERROR = "CAMERA_ERROR"         
+
+MOVE_FORWARD = "MOVE_FORWARD"
+MOVE_BACK = "MOVE_BACK"
+MOVE_LEFT = "MOVE_LEFT"
+MOVE_RIGHT = "MOVE_RIGHT"
+MOVE_NEXT = "MOVE_NEXT"               
+STOP = "STOP"
+POSITION = "POSITION"                
+READ_COLOUR = "READ_COLOUR"         
+ADJUST_STEPPER = "ADJUST_STEPPER"     
+
+READY = "READY"
+MOVING = "MOVING"
+DONE = "DONE"
+STEPPER_DONE = "STEPPER_DONE"
+COLOUR = "COLOUR"                     
+POSITION_REPORT = "POSITION"          
+ERROR = "ERROR"                     
+CONTINUE = "continue"
+RESCAN = "rescan"
+COMPLETE = "complete"
+INSPECT_NEIGHBOURS = "inspect_neighbours"
+
+ALL_LAPTOP_COMMANDS = (CONTINUE, RESCAN, COMPLETE, INSPECT_NEIGHBOURS)
+
+PHOTO_UPLOAD_PATH = "/api/v1/scan_photo"
+SENSOR_UPLOAD_PATH = "/api/v1/scan_sensors"
+SCAN_RESULT_PATH = "/api/v1/scan_result"       
+TEXTILE_RESULT_PATH = "/api/v1/textile_result"  
+HEALTH_PATH = "/api/v1/health"
+
+ROBOT_KEY_HEADER = "X-Robot-Key"

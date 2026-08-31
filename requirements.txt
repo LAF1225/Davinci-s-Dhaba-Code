@@ -1,0 +1,37 @@
+# Python packages the laptop side needs.
+#
+#   python -m venv .venv
+#   .venv\Scripts\pip install -r requirements.txt      (Windows)
+#   .venv/bin/pip install -r requirements.txt          (macOS and Linux)
+#
+# The Arduino and ESP32 sketches need nothing from this file. They are built in
+# the Arduino IDE or PlatformIO.
+
+# --- the web server the two ESP boards upload to ---------------------------
+fastapi==0.115.6
+uvicorn==0.34.0
+python-multipart==0.0.20    # needed for the multipart photo upload
+pydantic==2.10.5
+
+# --- image handling and maths ----------------------------------------------
+opencv-python==4.11.0.86
+numpy==2.2.2
+
+# --- the classifier --------------------------------------------------------
+scikit-learn==1.6.1
+joblib==1.4.2
+
+# --- DINOv2 ----------------------------------------------------------------
+# CPU build. The pinned version matches the one the previous repository used,
+# so a model trained there still loads here. On Windows and Linux install it
+# from the CPU index to avoid pulling a large CUDA build:
+#
+#   pip install torch==2.6.0 --index-url https://download.pytorch.org/whl/cpu
+torch==2.6.0
+torchvision==0.21.0
+
+# --- talking to the laptop server from the collection scripts --------------
+requests==2.32.3
+
+# --- tests -----------------------------------------------------------------
+pytest==8.3.4

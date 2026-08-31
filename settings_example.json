@@ -1,0 +1,30 @@
+{
+  "_read_me": [
+    "Copy this file to settings.json and edit it, or to settings_private.json",
+    "if it will hold anything you do not want committed. settings_private.json",
+    "is in .gitignore and is read first when both exist.",
+    "",
+    "The two baud rates are null on purpose. Nobody has confirmed them on the",
+    "final wiring yet, and guessing a baud rate produces a link that looks",
+    "connected and delivers nothing but rubbish. Fill them in from the working",
+    "sketches, then write them down in",
+    "project_notes/notes_for_main_esp32_connections.md.",
+    "",
+    "There is no saved_scaler_path. The StandardScaler is saved inside",
+    "classifier.joblib as the first step of the sklearn Pipeline, which is what",
+    "the previous repository did, so the scaler can never be applied by",
+    "accident or forgotten. saved_model_folder points at the folder that holds",
+    "the classifier, the feature schema and the reference embeddings together."
+  ],
+
+  "laptop_server_address": "http://192.168.137.1:8000",
+
+  "main_esp32_to_xiao_uart_baud_rate": null,
+  "matrix_to_main_esp32_serial_baud_rate": null,
+
+  "number_of_regions_per_textile": 5,
+
+  "saved_model_folder": "saved_ai_files/active_model",
+
+  "robot_shared_key": ""
+}
