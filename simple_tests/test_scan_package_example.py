@@ -6,6 +6,41 @@ from laptop_connection_code.match_photo_and_sensor_data_using_scan_id import (
     WaitingScans,
 )
 
+EXAMPLE_PHOTO_METADATA = """
+{
+  "scan_id": "H001_R2_48213",
+  "region_id": "R2",
+  "x_position": 2,
+  "y_position": 0,
+  "timestamp": "48213",
+  "camera_status": "ok",
+  "image_capture_settings": {
+    "width": 1600,
+    "height": 1200,
+    "format": "jpeg",
+    "jpeg_quality": 8
+  }
+}
+"""
+
+EXAMPLE_SENSOR_UPLOAD = """
+{
+  "scan_id": "H001_R2_48213",
+  "textile_id": "H001",
+  "region_id": "R2",
+  "scan_index": 2,
+  "row_index": 0,
+  "column_index": 2,
+  "x_position": 2,
+  "y_position": 0,
+  "timestamp": "48210",
+  "robot_status": "ok",
+  "colour_sensor_values": [9120, 8340, 7015],
+  "colour_dark_reference": [102, 98, 110],
+  "colour_white_reference": [21400, 20100, 19250]
+}
+"""
+
 
 def test_the_photo_metadata_has_everything_the_laptop_needs():
     fields = json.loads(EXAMPLE_PHOTO_METADATA)
